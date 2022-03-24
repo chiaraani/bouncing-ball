@@ -1,2 +1,3 @@
-console.log("Hello World 2!");
-export let variable = 1
+import {Ball} from './ball.js'
+
+export let ball = new Ball

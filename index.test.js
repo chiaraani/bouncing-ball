@@ -1,5 +1,6 @@
-import {variable} from './index.js'
+import {Ball} from './ball.js'
+import {ball} from './index.js'
 
-test('variable equals 1', () => {
-	expect(variable).toBe(1)
+test('ball exists', () => {
+	expect(ball.constructor).toBe(Ball)
 })
