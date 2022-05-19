@@ -1,15 +1,11 @@
-import {container} from './container.js'
-
-export function containerSize() {
-	container.tag.style.width = '100px'
-	container.tag.style.height = '100px'
-}
+import {container} from '../src/container.js'
 
 test('Container is in body', () => {
 	expect(container.tag).toBe(document.getElementById('container'))
 })
 
 test('Container width', () => {
+	console.log(container.width)
 	container.tag.style.width = '100px'
 	expect(container.width).toEqual(100)
 })

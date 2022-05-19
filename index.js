@@ -1,3 +1,3 @@
-import {Ball} from './ball.js'
+import {Ball} from './src/ball.js'
 
 export let ball = new Ball

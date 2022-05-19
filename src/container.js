@@ -1,8 +1,8 @@
-import {PxToNumber} from './px-to-number.js'
+import {PxToNumber} from './helpers.js'
 
 const containerTag = document.createElement('div')
 containerTag.id = 'container'
-	document.body.appendChild(containerTag)
+document.body.appendChild(containerTag)
 
 export const container = {
 	tag: containerTag,
