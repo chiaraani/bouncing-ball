@@ -16,4 +16,6 @@ export class Ball {
 
 	get x() {	return PXToNumber( this.tag.style.left ) }
 	get y() {	return PXToNumber( this.tag.style.top ) }
+
+	move({x, y}) { this.x += x; this.y += y }
 }

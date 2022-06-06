@@ -32,4 +32,14 @@ describe('Ball', function () {
 			chai.expect('100px').to.equal(ball.tag.style.top)
 		})
 	})
+
+	describe('move', function () {
+		it('moves right 10px and moves down 2px', function () {
+			ball.x = 100
+			ball.y = 100
+			ball.move({x: -10, y: 2})
+			chai.expect(ball.x).to.equal(100 - 10)
+			chai.expect(ball.y).to.equal(100 + 2)
+		})
+	})
 })
