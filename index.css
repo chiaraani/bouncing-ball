@@ -10,4 +10,5 @@
   height: 50px;
   width: 50px;
   position: relative;
+	transform: translate(-25px, -25px);
 }
