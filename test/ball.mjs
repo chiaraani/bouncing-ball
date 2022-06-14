@@ -8,7 +8,7 @@ describe('Ball', function () {
 	describe('get x', function () {
 		it('returns left style property in number type', function () {
 			chai.expect(ball.x + 'px').to.equal(ball.tag.style.left)
-			chai.expect(ball.x).to.a('number')
+			chai.expect(ball.x).to.be.a('number')
 		})
 	})
 
