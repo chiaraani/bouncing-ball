@@ -5,20 +5,24 @@ export class Ball {
 	constructor() {
     this.#createHTMLTag()
 
-		CSSAlias([this, 'x'], [this.tag.style, 'left'], 'px')
-		CSSAlias([this, 'y'], [this.tag.style, 'top'], 'px')
+		CSSAlias(this, 'radius', '--radius', 'px')
+		CSSAlias(this, 'x', 'left', 'px')
+		CSSAlias(this, 'y', 'top', 'px')
 
 		this.#initializeVariables()
 		this.#animate()
 	}
 
   #createHTMLTag() {
-		this.tag = document.createElement('div')
-		this.tag.classList.add('ball')
-		container.tag.appendChild(this.tag)
+		this.HTMLTag = document.createElement('div')
+		this.HTMLTag.classList.add('ball')
+		container.tag.appendChild(this.HTMLTag)
 	}
 
 	#initializeVariables() {
+		let maxRadius = Math.min(container.width, container.height) / 11
+		this.radius = maxRadius * Math.random() + 10
+
 		this.x = container.width * 0.8 * Math.random()
 		this.y = container.height * 0.8 * Math.random()
 

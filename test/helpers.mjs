@@ -8,9 +8,12 @@ describe('Helpers', function () {
 	})
 
 	describe('CSS alias', function () {
-		let object = {}
-		let style = {a: '10px'}
-		CSSAlias([object, 'b'], [style, 'a'], 'px')
+		let tag = document.createElement("div")
+		document.body.appendChild(tag)
+		tag.style.setProperty('--a', '10px') 
+		let object = {HTMLTag: tag}
+
+		CSSAlias(object, 'b', '--a', 'px')
 
 		describe('Pixels format', function () {
 			it('builds an alias getter which transforms pixels to number', function () {
@@ -19,7 +22,7 @@ describe('Helpers', function () {
 
 			it('builds an alias setter which transforms number to pixels', function () {
 				object.b = 5
-				chai.expect(style.a).to.equal('5px')
+				chai.expect(getComputedStyle(object.HTMLTag).getPropertyValue('--a')).to.equal('5px')
 			})
 		})
 	})		

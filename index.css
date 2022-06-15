@@ -5,11 +5,12 @@
 }
 
 .ball {
+	--diameter: calc(var(--radius) * 2);
 	border-radius: 100%;
 	background-image: radial-gradient(at 25% 25%, white -15%, darkblue 50%);
 	box-shadow: 5px 5px 5px #0005;
-  height: 50px;
-  width: 50px;
+  height: var(--diameter);
+  width: var(--diameter);
   position: relative;
-	transform: translate(-25px, -25px);
+	transform: translate(calc(-1 * var(--radius)), calc(-1 * var(--radius)));
 }
