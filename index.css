@@ -6,7 +6,8 @@
 
 .ball {
 	border-radius: 100%;
-	background-image: radial-gradient(at 25% 25%, blue, darkblue);
+	background-image: radial-gradient(at 25% 25%, white -15%, darkblue 50%);
+	box-shadow: 5px 5px 5px #0005;
   height: 50px;
   width: 50px;
   position: relative;
