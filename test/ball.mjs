@@ -25,7 +25,7 @@ describe('Ball', function () {
 	describe('move', function () {
 		it('moves right 10px and moves down 2px', function () {
 		  const init = {x: ball.x, y: ball.y}
-			ball.move({x: -10, y: 2})
+			ball.move(-10, 2)
 			chai.expect(ball.x).to.equal(init.x - 10)
 			chai.expect(ball.y).to.equal(init.y + 2)
 		})
@@ -33,10 +33,10 @@ describe('Ball', function () {
 
 	it('has speed', async function () {
 		const init = {x: ball.x, y: ball.y}
-		ball.speed = {x: 1, y: -2}
-		await new Promise(resolve => setTimeout( () => resolve(), 50) )
-		chai.expect(ball.x).to.equal(init.x + 2)
-		chai.expect(ball.y).to.equal(init.y - 4)
+		ball.speed = {x: 10, y: -20}
+		await new Promise(resolve => setTimeout( () => resolve(), 100))
+		chai.expect(Math.round(ball.x)).to.equal(init.x + 1)
+		chai.expect(Math.round(ball.y)).to.equal(init.y - 2)
 	})
 
 	describe('boundaries', function () {
@@ -77,14 +77,26 @@ describe('Ball', function () {
 		})
 	})
 
-	it('bounces', async function () {
-		const init = {x: ball.boundaries.left - 10, y: ball.boundaries.top + 20}
-		ball.x = init.x
-		ball.y = init.y
-		ball.speed = {x: -2, y: -1}
-		await new Promise(resolve => setTimeout( () => resolve(), 30) )
-		chai.expect(ball.speed).to.deep.equal({x: 2, y: -1})
-		chai.expect(ball.x).to.equal(init.x + 12)
-		chai.expect(ball.y).to.equal(init.y - 1)
+	describe('bouncing', function () {
+		const bouncingTest = (init, end) => async function() {
+			ball.radius = 10
+			ball.x = init.x
+			ball.y = init.y
+			ball.speed = init.speed 
+			await new Promise(resolve => setTimeout( () => resolve(), 100) )
+			chai.expect(ball.speed).to.deep.equal(end.speed)
+			chai.expect(Math.round(ball.x)).to.equal(init.x + end.difference.x)
+			chai.expect(Math.round(ball.y)).to.equal(init.y + end.difference.y)
+		}
+
+		it('left', bouncingTest(
+			{x: 5, y: 20, speed: {x: -10, y: 20}},
+			{difference: {x: 6, y: 2}, speed: {x: 10, y: 20}}
+		))
+
+		it('top', bouncingTest(
+			{x: 20, y: 5, speed: {x: -10, y: -20}},
+			{difference: {x: -1, y: 7}, speed: {x: -10, y: 20}}
+		))
 	})
 })

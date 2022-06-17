@@ -20,3 +20,7 @@ export function CSSAlias(object, alias, property, format) {
 
 	Object.defineProperty(object, alias, descriptors[format])
 }
+
+export function randomRange(min, max) {
+	return (max - min) * Math.random() + min
+}
