@@ -3,22 +3,20 @@ export function PXToNumber(pixels) {
 }
 
 export function CSSAlias(object, alias, property, format) {
-	let styleGetter = () => {
+	const styleGetter = () => {
 		return getComputedStyle(object.HTMLTag).getPropertyValue(property)
 	}
 
-	let styleSetter = (value) => {
+	const styleSetter = (value) => {
 		object.HTMLTag.style.setProperty(property, value)
 	}
 
-	let descriptor
-	switch (format) {
-		case 'px':
-			descriptor = { 
-				get() { return PXToNumber(styleGetter()) },
-				set(value) { styleSetter(value + 'px') }
-			}
+	const descriptors = {
+		px: { 
+			get() { return PXToNumber(styleGetter()) },
+			set(value) { styleSetter(value + 'px') }
+		}
 	}
 
-	Object.defineProperty(object, alias, descriptor)
+	Object.defineProperty(object, alias, descriptors[format])
 }
