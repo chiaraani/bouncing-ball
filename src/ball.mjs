@@ -56,6 +56,19 @@ export class Ball {
 	move({x, y}) { this.x += x; this.y += y }
 
 	#animate() {
-		setInterval(() => this.move(this.speed), 40)
+		setInterval(() => {
+			if (this.outOfBoundary.length > 0) this.#bounce()
+			this.move(this.speed)
+		}, 40)
+	}
+
+  #bounce() {
+		if (this.outOfBoundary.includes('horizontal')) {
+			this.speed.x = -(this.speed.x)
+		}
+
+		if (this.outOfBoundary.includes('vertical')) {
+			this.speed.y = -(this.speed.y)
+		}
 	}
 }

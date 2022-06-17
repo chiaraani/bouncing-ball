@@ -76,4 +76,16 @@ describe('Ball', function () {
 			chai.expect(ball.outOfBoundary).to.deep.equal(['horizontal', 'vertical'])
 		})
 	})
+
+	it('bounces', async function () {
+		const init = {x: ball.boundaries.left, y: ball.boundaries.top + 10}
+		ball.x = init.x
+		ball.y = init.y
+		ball.speed = {x: -2, y: -1}
+
+		await new Promise(resolve => setTimeout( () => resolve(), 60) )
+		chai.expect(ball.speed).to.deep.equal({x: 2, y: -1})
+		chai.expect(ball.x).to.equal(init.x + 2)
+		chai.expect(ball.y).to.equal(init.y - 1)
+	})
 })
