@@ -1,5 +1,6 @@
 import {ball} from '../index.mjs'
 import {CSSAliasTest} from './helpers.mjs'
+import {container} from '../src/container.mjs'
 
 describe('Ball', function () {
 	it('adds a div with ball class inside container', function() {
@@ -33,8 +34,26 @@ describe('Ball', function () {
 	it('has speed', async function () {
 		let init = {x: ball.x, y: ball.y}
 		ball.speed = {x: 1, y: -2}
-		await new Promise(resolve => setTimeout( () => resolve(), 55) )
+		await new Promise(resolve => setTimeout( () => resolve(), 52) )
 		chai.expect(ball.x).to.equal(init.x + 2)
 		chai.expect(ball.y).to.equal(init.y - 4)
+	})
+
+	describe('bounderies', function () {
+		it('left equals radius', function () {
+			chai.expect(ball.bounderies.left).to.equal(ball.radius)
+		})
+
+		it('top equals radius', function () {
+			chai.expect(ball.bounderies.top).to.equal(ball.radius)
+		})
+		
+		it('right equals container width minus radius', function () {
+			chai.expect(ball.bounderies.right).to.equal(container.width - ball.radius)
+		})
+
+		it('bottom equals container height minus radius', function () {
+			chai.expect(ball.bounderies.bottom).to.equal(container.height - ball.radius)
+		})
 	})
 })

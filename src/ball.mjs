@@ -35,4 +35,13 @@ export class Ball {
 	}
 
 	move({x, y}) { this.x += x; this.y += y }
+
+	get bounderies() {
+		return { 
+			top: this.radius, 
+			left: this.radius,
+			right: container.width - this.radius,
+			bottom: container.height - this.radius
+		}
+	}
 }
