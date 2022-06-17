@@ -42,14 +42,14 @@ export class Ball {
 	get outOfBoundary() {
 		let outOfBoundaries = []
 		
-		if (this.x <= this.boundaries.left) outOfBoundaries.push('left')
+		if (this.x <= this.boundaries.left || this.x >= this.boundaries.right) {
+			outOfBoundaries.push('horizontal')
+		}
 
-		if (this.y <= this.boundaries.top)	outOfBoundaries.push('top')
+		if (this.y <= this.boundaries.top || this.y >= this.boundaries.bottom) {
+			outOfBoundaries.push('vertical')
+		}
 
-		if (this.x >= this.boundaries.right) outOfBoundaries.push('right') 
-
-		if (this.y >= this.boundaries.bottom) outOfBoundaries.push('bottom')
-		
 		return outOfBoundaries
 	}
 

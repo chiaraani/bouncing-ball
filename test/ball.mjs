@@ -34,7 +34,7 @@ describe('Ball', function () {
 	it('has speed', async function () {
 		const init = {x: ball.x, y: ball.y}
 		ball.speed = {x: 1, y: -2}
-		await new Promise(resolve => setTimeout( () => resolve(), 52) )
+		await new Promise(resolve => setTimeout( () => resolve(), 60) )
 		chai.expect(ball.x).to.equal(init.x + 2)
 		chai.expect(ball.y).to.equal(init.y - 4)
 	})
@@ -58,23 +58,22 @@ describe('Ball', function () {
 	})
 
 	describe('out of boundary', function () {
-		it('is out of left boundary', function () {
+		it('is out of horizontal boundary', function () {
 			ball.x = ball.boundaries.left
 			ball.y = ball.boundaries.top + 10
-			chai.expect(ball.outOfBoundary).to.deep.equal(['left'])
+			chai.expect(ball.outOfBoundary).to.deep.equal(['horizontal'])
 		})
 
-		it('is out of top boundary', function () {
+		it('is out of vertical boundary', function () {
 			ball.y = ball.boundaries.top
 			ball.x = ball.boundaries.left + 10
-			chai.expect(ball.outOfBoundary).to.deep.equal(['top'])
+			chai.expect(ball.outOfBoundary).to.deep.equal(['vertical'])
 		})
 
-		it('is out of right and bottom boundaries', function () {
+		it('is out of both horizontal and vertical boundaries', function () {
 			ball.x = ball.boundaries.right
 			ball.y = ball.boundaries.bottom
-			chai.expect(ball.outOfBoundary).to.deep.equal(['right', 'bottom'])
+			chai.expect(ball.outOfBoundary).to.deep.equal(['horizontal', 'vertical'])
 		})
 	})
-
 })
