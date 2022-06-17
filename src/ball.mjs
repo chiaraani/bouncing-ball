@@ -30,18 +30,32 @@ export class Ball {
 	  this.speed = {x: randomSpeed(), y: randomSpeed()}
 	}
 
-	#animate() {
-		setInterval(() => this.move(this.speed), 40)
-	}
-
-	move({x, y}) { this.x += x; this.y += y }
-
-	get bounderies() {
+	get boundaries() {
 		return { 
 			top: this.radius, 
 			left: this.radius,
 			right: container.width - this.radius,
 			bottom: container.height - this.radius
 		}
+	}
+
+	get outOfBoundary() {
+		let outOfBoundaries = []
+		
+		if (this.x <= this.boundaries.left) outOfBoundaries.push('left')
+
+		if (this.y <= this.boundaries.top)	outOfBoundaries.push('top')
+
+		if (this.x >= this.boundaries.right) outOfBoundaries.push('right') 
+
+		if (this.y >= this.boundaries.bottom) outOfBoundaries.push('bottom')
+		
+		return outOfBoundaries
+	}
+
+	move({x, y}) { this.x += x; this.y += y }
+
+	#animate() {
+		setInterval(() => this.move(this.speed), 40)
 	}
 }

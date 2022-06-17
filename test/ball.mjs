@@ -24,7 +24,7 @@ describe('Ball', function () {
 
 	describe('move', function () {
 		it('moves right 10px and moves down 2px', function () {
-		  let init = {x: ball.x, y: ball.y}
+		  const init = {x: ball.x, y: ball.y}
 			ball.move({x: -10, y: 2})
 			chai.expect(ball.x).to.equal(init.x - 10)
 			chai.expect(ball.y).to.equal(init.y + 2)
@@ -32,28 +32,49 @@ describe('Ball', function () {
 	})
 
 	it('has speed', async function () {
-		let init = {x: ball.x, y: ball.y}
+		const init = {x: ball.x, y: ball.y}
 		ball.speed = {x: 1, y: -2}
 		await new Promise(resolve => setTimeout( () => resolve(), 52) )
 		chai.expect(ball.x).to.equal(init.x + 2)
 		chai.expect(ball.y).to.equal(init.y - 4)
 	})
 
-	describe('bounderies', function () {
+	describe('boundaries', function () {
 		it('left equals radius', function () {
-			chai.expect(ball.bounderies.left).to.equal(ball.radius)
+			chai.expect(ball.boundaries.left).to.equal(ball.radius)
 		})
 
 		it('top equals radius', function () {
-			chai.expect(ball.bounderies.top).to.equal(ball.radius)
+			chai.expect(ball.boundaries.top).to.equal(ball.radius)
 		})
 		
 		it('right equals container width minus radius', function () {
-			chai.expect(ball.bounderies.right).to.equal(container.width - ball.radius)
+			chai.expect(ball.boundaries.right).to.equal(container.width - ball.radius)
 		})
 
 		it('bottom equals container height minus radius', function () {
-			chai.expect(ball.bounderies.bottom).to.equal(container.height - ball.radius)
+			chai.expect(ball.boundaries.bottom).to.equal(container.height - ball.radius)
 		})
 	})
+
+	describe('out of boundary', function () {
+		it('is out of left boundary', function () {
+			ball.x = ball.boundaries.left
+			ball.y = ball.boundaries.top + 10
+			chai.expect(ball.outOfBoundary).to.deep.equal(['left'])
+		})
+
+		it('is out of top boundary', function () {
+			ball.y = ball.boundaries.top
+			ball.x = ball.boundaries.left + 10
+			chai.expect(ball.outOfBoundary).to.deep.equal(['top'])
+		})
+
+		it('is out of right and bottom boundaries', function () {
+			ball.x = ball.boundaries.right
+			ball.y = ball.boundaries.bottom
+			chai.expect(ball.outOfBoundary).to.deep.equal(['right', 'bottom'])
+		})
+	})
+
 })
