@@ -65,10 +65,16 @@ export class Ball {
   #bounce() {
 		if (this.outOfBoundary.includes('horizontal')) {
 			this.speed.x = -(this.speed.x)
+
+			if (this.x < this.boundaries.left) this.x = this.boundaries.left
+			if (this.x > this.boundaries.right) this.x = this.boundaries.right
 		}
 
 		if (this.outOfBoundary.includes('vertical')) {
 			this.speed.y = -(this.speed.y)
+
+			if (this.y < this.boundaries.top) this.y = this.boundaries.top
+			if (this.x > this.boundaries.bottom) this.y = this.boundaries.bottom
 		}
 	}
 }

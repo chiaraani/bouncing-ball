@@ -34,7 +34,7 @@ describe('Ball', function () {
 	it('has speed', async function () {
 		const init = {x: ball.x, y: ball.y}
 		ball.speed = {x: 1, y: -2}
-		await new Promise(resolve => setTimeout( () => resolve(), 60) )
+		await new Promise(resolve => setTimeout( () => resolve(), 50) )
 		chai.expect(ball.x).to.equal(init.x + 2)
 		chai.expect(ball.y).to.equal(init.y - 4)
 	})
@@ -78,14 +78,13 @@ describe('Ball', function () {
 	})
 
 	it('bounces', async function () {
-		const init = {x: ball.boundaries.left, y: ball.boundaries.top + 10}
+		const init = {x: ball.boundaries.left - 10, y: ball.boundaries.top + 20}
 		ball.x = init.x
 		ball.y = init.y
 		ball.speed = {x: -2, y: -1}
-
-		await new Promise(resolve => setTimeout( () => resolve(), 60) )
+		await new Promise(resolve => setTimeout( () => resolve(), 30) )
 		chai.expect(ball.speed).to.deep.equal({x: 2, y: -1})
-		chai.expect(ball.x).to.equal(init.x + 2)
+		chai.expect(ball.x).to.equal(init.x + 12)
 		chai.expect(ball.y).to.equal(init.y - 1)
 	})
 })
