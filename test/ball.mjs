@@ -1,25 +1,24 @@
 import {ball} from '../index.mjs'
+import {CSSAliasTest} from './helpers.mjs'
 
 describe('Ball', function () {
 	it('adds a div with ball class inside container', function() {
 		chai.expect(document.querySelectorAll('#container > div.ball')).to.include(ball.HTMLTag)
 	})
 
-	it('aliases radius to style --radius with px format', function () {
-		ball.radius = 25
-		chai.expect('50px').to.equal(getComputedStyle(ball.HTMLTag).height)
+	CSSAliasTest(ball, 'radius', '--radius', 'px', function (assertAlias) {
+		assertAlias.getter({CSS: '10px', returns: 10})
+		assertAlias.setter({assigns: 25, CSS: '25px'})
 	})
 
-	it('aliases x to style left with px format', function () {
-		chai.expect(ball.x + 'px').to.equal(ball.HTMLTag.style.left)
-		ball.x = 100
-		chai.expect('100px').to.equal(ball.HTMLTag.style.left)
+	CSSAliasTest(ball, 'x', 'left', 'px', function (assertAlias) {
+		assertAlias.getter({CSS: '10px', returns: 10})
+		assertAlias.setter({assigns: 100, CSS: '100px'})
 	})
 
-	it('aliases y to style top with px format', function () {
-		chai.expect(ball.y + 'px').to.equal(ball.HTMLTag.style.top)
-		ball.y = 100
-		chai.expect('100px').to.equal(ball.HTMLTag.style.top)
+	CSSAliasTest(ball, 'y', 'top', 'px', function (assertAlias) {
+		assertAlias.getter({CSS: '10px', returns: 10})
+		assertAlias.setter({assigns: 100, CSS: '100px'})
 	})
 
 	describe('move', function () {
@@ -34,7 +33,7 @@ describe('Ball', function () {
 	it('has speed', async function () {
 		let init = {x: ball.x, y: ball.y}
 		ball.speed = {x: 1, y: -2}
-		await new Promise(resolve => setTimeout( () => resolve(), 60) )
+		await new Promise(resolve => setTimeout( () => resolve(), 55) )
 		chai.expect(ball.x).to.equal(init.x + 2)
 		chai.expect(ball.y).to.equal(init.y - 4)
 	})
