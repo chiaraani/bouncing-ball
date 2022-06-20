@@ -1,4 +1,4 @@
-import { INTERVAL, FPS } from './config.mjs'
+import { FPS } from './config.mjs'
 import { CSSAlias, randomRange } from './helpers.mjs'
 import { container } from './container.mjs'
 
@@ -71,7 +71,7 @@ export class Ball {
       if (this.outOfBoundary.length > 0) this.#bounce()
 
       this.move(this.speed.x / FPS, this.speed.y / FPS)
-    }, INTERVAL)
+    }, 1000 / FPS)
   }
 
   #bounce () {
