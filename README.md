@@ -9,7 +9,7 @@ npm i @chiaraani/bouncing-ball
 ```
 
 To import the project:
-```
+```JS
 import '@chiaraani/bouncing-ball/index.mjs'
 ```
 And a container with a ball will appear in your site.
