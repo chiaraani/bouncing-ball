@@ -28,8 +28,8 @@ export class Ball {
 	#initializeVariables() {
 		this.radius = randomRange(Ball.MIN_RADIUS, Ball.MAX_RADIUS)
 
-		this.x = container.width * Math.random()
-		this.y = container.height * Math.random()
+		this.x = randomRange(this.boundaries.left, this.boundaries.right)
+		this.y = randomRange(this.boundaries.top, this.boundaries.bottom)
 
 		let randomSpeed = () => {
 			let speed = randomRange(Ball.MIN_SPEED, Ball.MAX_SPEED)
