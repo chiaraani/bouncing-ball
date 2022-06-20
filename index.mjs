@@ -1,4 +1,4 @@
 import './index.css'
-import {Ball} from './src/ball.mjs'
+import { Ball } from './src/ball.mjs'
 
-export let ball = new Ball
+export const ball = new Ball()

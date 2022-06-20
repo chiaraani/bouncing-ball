@@ -13,7 +13,24 @@
   },
   "author": "Chiara Nuñez",
   "license": "MIT",
+  "standard": {
+    "parser": "@babel/eslint-parser",
+    "ignore": [
+      "dist/",
+      "node_modules/"
+    ],
+    "globals": [
+      "chai",
+      "mocha",
+			"it",
+			"describe"
+    ]
+  },
   "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.5",
+    "@babel/eslint-parser": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
     "@webpack-cli/generators": "^2.4.2",
     "babel-loader": "^8.2.5",
     "chai": "^4.3.6",

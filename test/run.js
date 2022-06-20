@@ -5,4 +5,3 @@ import './container.mjs'
 import './ball.mjs'
 mocha.checkLeaks()
 mocha.run()
-
