@@ -1,14 +1,4 @@
 # bouncing-ball
-A web page with a bouncing ball in a container. Visit on [chiara-bouncing-ball.netlify.app](https://chiara-bouncing-ball.netlify.app/)
+A web page with a bouncing ball in a container. Ball starts at a random position, sped, direction and size. Reload to see a different ball.
 
-This project has been created using **webpack-cli**, you can now run to bundle your application
-
-```
-npm run build
-```
-
-or
-
-```
-yarn build
-```
+Visit on [chiara-bouncing-ball.netlify.app](https://chiara-bouncing-ball.netlify.app/)
