@@ -14,3 +14,8 @@
   position: relative;
 	transform: translate(calc(-1 * var(--radius)), calc(-1 * var(--radius)));
 }
+
+#switch_ball {
+  margin: 10px;
+  font-size: 1.1em;
+}

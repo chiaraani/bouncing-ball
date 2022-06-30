@@ -1,6 +1,6 @@
 {
   "name": "@chiaraani/bouncing-ball",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A web page with a bouncing ball in a container. Ball starts at random position, speed, direction and size. Reload to see a different ball.",
   "main": "index.js",
   "scripts": {
