@@ -3,6 +3,8 @@ A web page with a bouncing ball in a container. Ball starts at random position, 
 
 Visit on [chiara-bouncing-ball.netlify.app](https://chiara-bouncing-ball.netlify.app/)
 
+![preview](https://github.com/chiaraani/bouncing-ball/blob/main/example.gif?raw=true)
+
 ## Install with npm
 ```
 npm i @chiaraani/bouncing-ball
